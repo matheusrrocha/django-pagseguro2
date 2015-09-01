@@ -7,6 +7,8 @@ PAGSEGURO_TOKEN = getattr(settings, 'PAGSEGURO_TOKEN', '')
 PAGSEGURO_SANDBOX = getattr(settings, 'PAGSEGURO_SANDBOX', True)
 PAGSEGURO_LOG_IN_MODEL = getattr(settings, 'PAGSEGURO_LOG_IN_MODEL', True)
 
+PAGSEGURO = getattr(settings, 'PAGSEGURO', '')
+
 if PAGSEGURO_SANDBOX:
     CHECKOUT_URL = 'https://ws.sandbox.pagseguro.uol.com.br/v2/checkout'
     PAYMENT_URL = 'https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html'

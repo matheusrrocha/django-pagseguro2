@@ -7,8 +7,9 @@ from datetime import datetime
 
 from pagseguro.settings import (
     PAGSEGURO_EMAIL, PAGSEGURO_TOKEN, CHECKOUT_URL, PAYMENT_URL,
-    NOTIFICATION_URL, TRANSACTION_URL
+    NOTIFICATION_URL, TRANSACTION_URL, PAGSEGURO
 )
+
 from pagseguro.signals import (
     notificacao_recebida, NOTIFICATION_STATUS, checkout_realizado,
     checkout_realizado_com_sucesso, checkout_realizado_com_erro
@@ -48,7 +49,7 @@ class PagSeguroItem(object):
         return '<PagSeguroItem: {0}>'.format(self.description)
 
 
-class PagSeguroApi(object):
+class PagSeguroApi(setting, object):
 
     checkout_url = CHECKOUT_URL
     redirect_url = PAYMENT_URL
@@ -56,11 +57,15 @@ class PagSeguroApi(object):
     transaction_url = TRANSACTION_URL
 
     def __init__(self, **kwargs):
+        if 'setting' not in kwargs:
+            kwargs.update({'setting': 'default'})
+
         self.base_params = {
-            'email': PAGSEGURO_EMAIL,
-            'token': PAGSEGURO_TOKEN,
+            'email': PAGSEGURO[kwargs['setting']]['email'],
+            'token': PAGSEGURO[kwargs['setting']]['token'],
             'currency': 'BRL',
         }
+        
         self.base_params.update(kwargs)
 
         self.params = {}
