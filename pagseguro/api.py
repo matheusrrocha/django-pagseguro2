@@ -49,7 +49,7 @@ class PagSeguroItem(object):
         return '<PagSeguroItem: {0}>'.format(self.description)
 
 
-class PagSeguroApi(setting, object):
+class PagSeguroApi(object):
 
     checkout_url = CHECKOUT_URL
     redirect_url = PAYMENT_URL
