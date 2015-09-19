@@ -7,6 +7,7 @@ urlpatterns = patterns(
 
     url(
         r'^$', 'receive_notification', name='pagseguro_receive_notification'
+        r'^$aline', 'receive_notification_aline', name='pagseguro_receive_notification_aline'
     ),
 
 )
