@@ -6,6 +6,6 @@ urlpatterns = patterns(
     'pagseguro.views',
 
     url(r'^$', 'receive_notification', name='pagseguro_receive_notification'),
-    url(r'^$aline', 'receive_notification_aline', name='pagseguro_receive_notification_aline'),
+    url(r'^aline$', 'receive_notification_aline', name='pagseguro_receive_notification_aline'),
 
 )
